@@ -1,1 +1,1 @@
-## Shipment Price Prediction - End to End Machine Learning Project
+## Dynamic Shipment Price Prediction - End to End Machine Learning Project
