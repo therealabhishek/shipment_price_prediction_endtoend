@@ -24,3 +24,14 @@ class MainUtils:
                 return yaml.safe_load(yaml_file)
         except Exception as e:
             raise ShippingException(e,sys)
+        
+
+    def write_json_to_yaml_file(self, json_file: dict, yaml_file_path: str) -> yaml:
+        logging.info("Entered the write_json_to_yaml_file method of MainUtils class")
+        try:
+            data = json_file
+            stream = open(yaml_file_path, "w")
+            yaml.dump(data, stream)
+
+        except Exception as e:
+            raise ShippingException(e, sys) from e

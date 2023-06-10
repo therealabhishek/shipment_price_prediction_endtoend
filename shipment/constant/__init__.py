@@ -25,4 +25,10 @@ DATA_INGESTION_TEST_DIR = "Test"
 DATA_INGESTION_TRAIN_FILE_NAME = "train.csv"
 DATA_INGESTION_TEST_FILE_NAME = "test.csv"
 
+"""
+Data Validation Constants
+"""
+
+DATA_VALIDATION_ARTIFACTS_DIR = "DataValidationArtifacts"
+DATA_DRIFT_FILE_NAME = "DataDriftReport.yaml"
 
