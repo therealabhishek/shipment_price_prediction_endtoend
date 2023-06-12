@@ -4,16 +4,19 @@ from shipment.logger import logging
 from shipment.configuration.mongo_operations import MongoDBOperation
 from shipment.entity.config_entity import (
     DataIngestionConfig,
-    DataValidationConfig
+    DataValidationConfig,
+    DataTransformationConfig
 )
 
 from shipment.entity.artifact_entity import (
     DataIngestionArtifacts,
-    DataValidationArtifacts
+    DataValidationArtifacts,
+    DataTransformationArtifacts
 )
 
 from shipment.components.data_ingestion import DataIngestion
 from shipment.components.data_validation import DataValidation
+from shipment.components.data_transformation import DataTransformation
 
 
 
@@ -21,6 +24,7 @@ class TrainPipeline:
     def __init__(self) -> None:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
+        self.data_transformation_config = DataTransformationConfig()
         self.mongo_op = MongoDBOperation()
 
 
@@ -53,6 +57,30 @@ class TrainPipeline:
             return data_validation_artifact
         except Exception as e:
             raise ShippingException(e,sys)
+        
+
+    # This method is used to start the data transformation
+    def start_data_transformation(
+        self, data_ingestion_artifact: DataIngestionArtifacts
+    ) -> DataTransformationArtifacts:
+        logging.info(
+            "Entered the start_data_transformation method of TrainPipeline class"
+        )
+        try:
+            data_transformation = DataTransformation(
+                data_ingestion_artifacts=data_ingestion_artifact,
+                data_transformation_config=self.data_transformation_config,
+            )
+            data_transformation_artifact = (
+                data_transformation.initiate_data_transformation()
+            )
+            logging.info(
+                "Exited the start_data_transformation method of TrainPipeline class"
+            )
+            return data_transformation_artifact
+
+        except Exception as e:
+            raise ShippingException(e, sys) from e
 
 
     def run_pipeline(self) -> None:
@@ -60,6 +88,7 @@ class TrainPipeline:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact)
 
         except Exception as e:
             raise ShippingException(e,sys)
