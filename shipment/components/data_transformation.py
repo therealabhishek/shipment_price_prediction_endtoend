@@ -62,6 +62,7 @@ class DataTransformation:
 
             logging.info("Created preprocessor object from Column Transformer.")
             logging.info("Exited get_data_transformer_object method of DataTransformation class.")
+            return preprocessor
         except Exception as e:
             raise ShippingException(e,sys)
         
@@ -182,7 +183,7 @@ class DataTransformation:
             data_transformation_artifacts = DataTransformationArtifacts(
                 transformed_object_file_path=preprocessor_obj_file,
                 transformed_train_file_path=transformed_train_file,
-                transformed_test_file_path=transformed_test_file,
+                transformed_test_file_path=transformed_test_file
             )
 
             return data_transformation_artifacts
