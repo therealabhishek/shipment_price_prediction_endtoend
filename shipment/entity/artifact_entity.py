@@ -23,5 +23,13 @@ class DataTransformationArtifacts:
     transformed_test_file_path: str
 
 
+# Model Trainer Artifacts:
+@dataclass
+class ModelTrainerArtifacts:
+    trained_model_file_path:str
+
+
+
+
 
 

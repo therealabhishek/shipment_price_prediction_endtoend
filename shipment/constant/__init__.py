@@ -43,3 +43,18 @@ TRANSFORMED_TRAIN_DATA_FILE_NAME = "transformed_train_data.npz"
 TRANSFORMED_TEST_DATA_FILE_NAME = "transformed_test_data.npz"
 PREPROCESSOR_OBJECT_FILE_NAME = "shipping_preprocessor.pkl"
 
+
+"""
+Model Training Constants
+"""
+MODEL_TRAINER_ARTIFACTS_DIR = "ModelTrainerArtifacts"
+MODEL_FILE_NAME = "shipping_price_model.pkl"
+MODEL_SAVE_FORMAT = ".pkl"
+
+
+"""
+Model Evaluation Constants
+"""
+BUCKET_NAME = "shipmentprice-predmodel-io-files"
+S3_MODEL_NAME = "shipping_price_model.pkl"
+

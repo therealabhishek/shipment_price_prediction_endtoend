@@ -3,6 +3,7 @@ from from_root import from_root
 import os
 from shipment.utils.main_utils import MainUtils
 from shipment.constant import *
+from shipment.configuration.s3_operations import S3Operation
 
 @dataclass
 class DataIngestionConfig:
@@ -52,3 +53,39 @@ class DataTransformationConfig:
                                                    DATA_TRANSFORMATION_ARTIFACTS_DIR,
                                                    PREPROCESSOR_OBJECT_FILE_NAME
                                                    )
+        
+
+
+@dataclass
+class ModelTrainerConfig:
+    def __init__(self):
+        self.UTILS = MainUtils()
+        self.DATA_TRANSFORMATION_ARTIFACTS_DIR: str = os.path.join(from_root(),
+                                                                   ARTIFACTS_DIR,
+                                                                   DATA_TRANSFORMATION_ARTIFACTS_DIR)
+        self.MODEL_TRAINER_ARTIFACTS_DIR :str = os.path.join(from_root(),
+                                                             ARTIFACTS_DIR,
+                                                             MODEL_TRAINER_ARTIFACTS_DIR)
+        self.PREPROCESSOR_OBJECT_FILE_PATH :str = os.path.join(self.DATA_TRANSFORMATION_ARTIFACTS_DIR,
+                                                               PREPROCESSOR_OBJECT_FILE_NAME)
+        self.TRAINED_MODEL_FILE_PATH :str = os.path.join(from_root(),
+                                                         ARTIFACTS_DIR,
+                                                         MODEL_TRAINER_ARTIFACTS_DIR,
+                                                         MODEL_FILE_NAME)
+        
+
+
+# Model Evaluation Configurations
+@dataclass
+class ModelEvaluationConfig:
+    def __init__(self):
+        self.S3_OPERATIONS = S3Operation()
+        self.UTILS = MainUtils()
+        self.BUCKET_NAME: str = BUCKET_NAME
+        self.BEST_MODEL_PATH: str = os.path.join(
+            from_root(), ARTIFACTS_DIR, MODEL_TRAINER_ARTIFACTS_DIR, MODEL_FILE_NAME
+        )
+        
+
+
+
