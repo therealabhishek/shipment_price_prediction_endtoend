@@ -82,9 +82,11 @@ class ModelEvaluationConfig:
         self.S3_OPERATIONS = S3Operation()
         self.UTILS = MainUtils()
         self.BUCKET_NAME: str = BUCKET_NAME
-        self.BEST_MODEL_PATH: str = os.path.join(
-            from_root(), ARTIFACTS_DIR, MODEL_TRAINER_ARTIFACTS_DIR, MODEL_FILE_NAME
-        )
+        self.BEST_MODEL_PATH: str = os.path.join(from_root(), 
+                                                 ARTIFACTS_DIR, 
+                                                 MODEL_TRAINER_ARTIFACTS_DIR, 
+                                                 MODEL_FILE_NAME
+                                                 )
         
 
 
