@@ -36,5 +36,12 @@ class ModelEvaluationArtifacts:
     changed_accuracy: float
 
 
+# Model Pusher Artifacts
+@dataclass
+class ModelPusherArtifacts:
+    bucket_name: str
+    s3_model_path: str
+
+
 
 

@@ -58,3 +58,11 @@ Model Evaluation Constants
 BUCKET_NAME = "shipmentprice-predmodel-io-files"
 S3_MODEL_NAME = "shipping_price_model.pkl"
 
+
+"""
+APP host and port
+"""
+APP_HOST = "127.0.0.1"
+APP_PORT = 8080
+
+
